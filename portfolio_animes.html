@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio AnimeVerse</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #090a18;
+      --card: rgba(255, 255, 255, 0.08);
+      --text: #ffffff;
+      --muted: #c9c9d6;
+      --primary: #ffcc00;
+      --secondary: #ff3d81;
+      --accent: #45f3ff;
+      --border: rgba(255, 255, 255, 0.18);
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 61, 129, 0.28), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(69, 243, 255, 0.22), transparent 28%),
+        linear-gradient(135deg, #090a18, #171832 55%, #0b1026);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      filter: blur(4px);
+      opacity: 0.25;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    header::before {
+      background: var(--secondary);
+      top: 10%;
+      left: -70px;
+    }
+
+    header::after {
+      background: var(--accent);
+      bottom: 5%;
+      right: -70px;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-22px); }
+    }
+
+    .hero {
+      max-width: 950px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 16px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 8vw, 5.4rem);
+      line-height: 1;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    h1 span {
+      color: var(--primary);
+      text-shadow: 0 0 22px rgba(255, 204, 0, 0.45);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    button,
+    .btn-link {
+      border: none;
+      cursor: pointer;
+      padding: 13px 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    button:hover,
+    .btn-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #ff8a00);
+      color: #171000;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    main {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 48px 0 70px;
+    }
+
+    section {
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      margin-bottom: 22px;
+    }
+
+    .section-title small {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin: 6px 0;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 26px 0;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .filter-btn.active {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+      transition: transform 0.25s, border 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px) scale(1.01);
+      border-color: rgba(255, 204, 0, 0.65);
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      width: fit-content;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(69, 243, 255, 0.12);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .portfolio-box {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .panel h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--muted);
+    }
+
+    .panel ul {
+      padding-left: 20px;
+      margin-top: 12px;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .status-item {
+      padding: 14px;
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 16px;
+      border-left: 4px solid var(--secondary);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.76);
+      z-index: 10;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(560px, 100%);
+      background: #11142e;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+      animation: zoom 0.22s ease-out;
+    }
+
+    @keyframes zoom {
+      from { transform: scale(0.94); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-content h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 1.7rem;
+    }
+
+    .modal-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .close-btn {
+      background: var(--secondary);
+      color: white;
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 20px;
+      border-top: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    @media (max-width: 820px) {
+      header {
+        min-height: 72vh;
+      }
+
+      .portfolio-box {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="hero">
+      <span class="tag">Projeto de Portfólio Web</span>
+      <h1>Anime<span>Verse</span></h1>
+      <p>
+        Uma página simples, responsiva e interativa sobre animes clássicos famosos no Brasil
+        e destaques de 2026. Projeto criado com HTML, CSS e JavaScript puro.
+      </p>
+
+      <div class="hero-buttons">
+        <a class="btn-link btn-primary" href="#animes">Ver animes</a>
+        <a class="btn-link btn-secondary" href="#portfolio">Sobre o projeto</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="portfolio">
+      <div class="section-title">
+        <small>Apresentação</small>
+        <h2>Sobre este portfólio</h2>
+        <p>
+          Esta página demonstra domínio básico de estrutura HTML, estilização com CSS,
+          responsividade, cards interativos, filtro por categoria e manipulação do DOM com JavaScript.
+        </p>
+      </div>
+
+      <div class="portfolio-box">
+        <div class="panel">
+          <h3>Objetivo do projeto</h3>
+          <p>
+            Criar uma página visualmente atrativa para apresentar informações organizadas sobre animes,
+            usando uma estética inspirada em energia, ação, fantasia e cultura pop japonesa.
+          </p>
+          <ul>
+            <li>Layout responsivo para celular, tablet e computador.</li>
+            <li>Cards dinâmicos gerados pelo JavaScript.</li>
+            <li>Filtro por categoria: clássicos do Brasil e destaques de 2026.</li>
+            <li>Modal com informações extras ao clicar no card.</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>Recursos utilizados</h3>
+          <div class="status-list">
+            <div class="status-item">HTML5 semântico</div>
+            <div class="status-item">CSS3 com gradientes, animações e responsividade</div>
+            <div class="status-item">JavaScript para renderização, filtros e modal</div>
+            <div class="status-item">Sem bibliotecas externas</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="animes">
+      <div class="section-title">
+        <small>Catálogo</small>
+        <h2>Animes em destaque</h2>
+        <p>
+          Use os botões abaixo para alternar entre animes clássicos que marcaram o público brasileiro
+          e produções recentes que aparecem entre os destaques de 2026.
+        </p>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="classico">Clássicos no Brasil</button>
+        <button class="filter-btn" data-filter="2026">Destaques de 2026</button>
+      </div>
+
+      <div class="grid" id="animeGrid"></div>
+    </section>
+  </main>
+
+  <div class="modal" id="animeModal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Título</h3>
+      <p id="modalText">Descrição</p>
+      <button class="close-btn" id="closeModal">Fechar</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Desenvolvido para portfólio | HTML + CSS + JavaScript | Tema: Animes</p>
+  </footer>
+
+  <script>
+    const animes = [
+      {
+        titulo: "Os Cavaleiros do Zodíaco",
+        categoria: "classico",
+        icone: "♐",
+        tag: "Clássico no Brasil",
+        resumo: "Um dos maiores fenômenos da TV brasileira nos anos 1990, com batalhas épicas, armaduras sagradas e forte apelo nostálgico.",
+        detalhe: "A obra acompanha jovens cavaleiros que protegem Atena usando armaduras baseadas em constelações. No Brasil, ajudou a popularizar os animes na TV aberta."
+      },
+      {
+        titulo: "Dragon Ball Z",
+        categoria: "classico",
+        icone: "🐉",
+        tag: "Ação e aventura",
+        resumo: "Marcado por transformações, torneios e lutas memoráveis, tornou Goku e os Guerreiros Z ícones de várias gerações.",
+        detalhe: "Dragon Ball Z consolidou no Brasil o gosto por sagas longas, poderes crescentes e rivalidades intensas, influenciando muitos fãs de anime e jogos."
+      },
+      {
+        titulo: "Naruto",
+        categoria: "classico",
+        icone: "🍥",
+        tag: "Ninjas e superação",
+        resumo: "Famoso pela jornada de Naruto Uzumaki, trouxe temas como amizade, persistência, rejeição, rivalidade e amadurecimento.",
+        detalhe: "Naruto se tornou muito popular entre jovens brasileiros, principalmente por sua narrativa de evolução pessoal e pelos conflitos emocionais dos personagens."
+      },
+      {
+        titulo: "Pokémon",
+        categoria: "classico",
+        icone: "⚡",
+        tag: "Aventura e coleção",
+        resumo: "A jornada de Ash e Pikachu marcou a infância de muitos brasileiros e conectou anime, jogos, cartas e produtos licenciados.",
+        detalhe: "Pokémon se destacou pela ideia de jornada, amizade entre treinador e criatura, batalhas e pelo famoso objetivo de se tornar um mestre Pokémon."
+      },
+      {
+        titulo: "Sailor Moon",
+        categoria: "classico",
+        icone: "🌙",
+        tag: "Magia e heroínas",
+        resumo: "Um marco do gênero garotas mágicas, misturando romance, amizade, transformação e batalhas contra forças do mal.",
+        detalhe: "Sailor Moon ajudou a fortalecer o protagonismo feminino nos animes exibidos no Brasil, com personagens carismáticas e visual marcante."
+      },
+      {
+        titulo: "Yu Yu Hakusho",
+        categoria: "classico",
+        icone: "🔥",
+        tag: "Torneios e mundo espiritual",
+        resumo: "Conhecido por seu humor, lutas intensas e personagens marcantes, foi muito lembrado por sua dublagem brasileira carismática.",
+        detalhe: "A história acompanha Yusuke Urameshi, um jovem que passa a atuar como detetive espiritual. O anime combina ação, drama, comédia e torneios memoráveis."
+      },
+      {
+        titulo: "Witch Hat Atelier",
+        categoria: "2026",
+        icone: "🪄",
+        tag: "Destaque 2026",
+        resumo: "Produção recente muito comentada por sua fantasia, visual artístico e universo de magia com forte apelo visual.",
+        detalhe: "A obra se destaca pelo imaginário de bruxas, aprendizado, encantamentos e construção de mundo, sendo uma boa referência para observar direção de arte em anime."
+      },
+      {
+        titulo: "Re:ZERO - Temporada 4",
+        categoria: "2026",
+        icone: "⏳",
+        tag: "Destaque 2026",
+        resumo: "Continuação de uma das franquias modernas mais populares de fantasia sombria, drama psicológico e loops temporais.",
+        detalhe: "A série trabalha tensão, escolhas difíceis e consequências emocionais, mantendo o interesse do público com suspense e desenvolvimento de personagens."
+      },
+      {
+        titulo: "MARRIAGETOXIN",
+        categoria: "2026",
+        icone: "💥",
+        tag: "Destaque 2026",
+        resumo: "Anime recente com mistura de ação, comédia e situações exageradas, aparecendo entre produções comentadas da temporada.",
+        detalhe: "A proposta combina humor, conflitos inusitados e ritmo acelerado, características que funcionam bem para atrair o público em plataformas digitais."
+      },
+      {
+        titulo: "DAN DA DAN",
+        categoria: "2026",
+        icone: "👽",
+        tag: "Premiações 2026",
+        resumo: "Obra moderna que mistura ação, comédia, romance, ocultismo e ficção científica com linguagem visual intensa.",
+        detalhe: "DAN DA DAN ganhou destaque internacional por sua estética vibrante, cenas dinâmicas e combinação de elementos sobrenaturais com humor adolescente."
+      },
+      {
+        titulo: "The Apothecary Diaries",
+        categoria: "2026",
+        icone: "🧪",
+        tag: "Premiações 2026",
+        resumo: "Anime de mistério e drama histórico, conhecido por investigação, inteligência da protagonista e ambientação palaciana.",
+        detalhe: "A obra se diferencia por usar raciocínio, medicina, observação e intriga política, fugindo do modelo tradicional de anime baseado apenas em batalhas."
+      },
+      {
+        titulo: "My Hero Academia: Final Season",
+        categoria: "2026",
+        icone: "🦸",
+        tag: "Premiações 2026",
+        resumo: "Conclusão de uma franquia muito popular de super-heróis, poderes especiais, amadurecimento e responsabilidade.",
+        detalhe: "A temporada final chama atenção por encerrar arcos importantes e por reforçar temas como legado, heroísmo, sacrifício e escolhas morais."
+      }
+    ];
+
+    const animeGrid = document.getElementById("animeGrid");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const modal = document.getElementById("animeModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const closeModal = document.getElementById("closeModal");
+
+    function renderAnimes(filtro = "todos") {
+      animeGrid.innerHTML = "";
+
+      const listaFiltrada = filtro === "todos"
+        ? animes
+        : animes.filter(anime => anime.categoria === filtro);
+
+      listaFiltrada.forEach(anime => {
+        const card = document.createElement("article");
+        card.classList.add("card");
+
+        card.innerHTML = `
+          <div>
+            <div class="card-icon">${anime.icone}</div>
+            <h3>${anime.titulo}</h3>
+            <p>${anime.resumo}</p>
+          </div>
+          <span class="badge">${anime.tag}</span>
+        `;
+
+        card.addEventListener("click", () => abrirModal(anime));
+        animeGrid.appendChild(card);
+      });
+    }
+
+    function abrirModal(anime) {
+      modalTitle.textContent = anime.titulo;
+      modalText.textContent = anime.detalhe;
+      modal.classList.add("show");
+    }
+
+    closeModal.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        modal.classList.remove("show");
+      }
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        renderAnimes(button.dataset.filter);
+      });
+    });
+
+    renderAnimes();
+  </script>
+</body>
+</html>
