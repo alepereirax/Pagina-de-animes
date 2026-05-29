@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio Otaku</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Portfólio <span>Dev</span></div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre Mim</a></li>
+                <li><a href="#classicos">Clássicos no Brasil</a></li>
+                <li><a href="#destaques-2026">Destaques 2026</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sobre" class="hero">
+            <h1>Olá, eu sou um Desenvolvedor apaixonado por Animes!</h1>
+            <p>Este é o meu portfólio. Aqui eu misturo minhas habilidades em HTML, CSS e JavaScript com as minhas histórias favoritas.</p>
+            <div class="skills">
+                <span class="badge">HTML5</span>
+                <span class="badge">CSS3</span>
+                <span class="badge">JavaScript</span>
+            </div>
+        </section>
+
+        <section id="classicos">
+            <h2>Clássicos que Marcaram o Brasil 🇧🇷</h2>
+            <div class="grid-cards">
+                <div class="card" onclick="mostrarInfo('Cavaleiros do Zodíaco')">
+                    <h3>Os Cavaleiros do Zodíaco</h3>
+                    <p>Elevou o cosmo de toda uma geração na extinta Rede Manchete nos anos 90.</p>
+                </div>
+                <div class="card" onclick="mostrarInfo('Dragon Ball Z')">
+                    <h3>Dragon Ball Z</h3>
+                    <p>As aventuras de Goku e os guerreiros Z paravam o Brasil nas manhãs de TV aberta.</p>
+                </div>
+                <div class="card" onclick="mostrarInfo('Yu Yu Hakusho')">
+                    <h3>Yu Yu Hakusho</h3>
+                    <p>Inesquecível não só pela história de Yusuke Urameshi, mas pela dublagem brasileira lendária.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="destaques-2026">
+            <h2>Os Melhores Animes de 2026 🔥</h2>
+            <div id="grid-2026" class="grid-cards"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Desenvolvido com muito café e episódios de anime.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
