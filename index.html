@@ -1,62 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio Otaku</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="AnimeVerse: portfólio web interativo com clássicos populares no Brasil e destaques confirmados de 2026."
+  >
+  <title>AnimeVerse | Portfólio Web</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="logo">Portfólio <span>Dev</span></div>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#classicos">Clássicos no Brasil</a></li>
-                <li><a href="#destaques-2026">Destaques 2026</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="topo">
+    <a class="marca" href="#inicio" aria-label="AnimeVerse — início">
+      Anime<span>Verse</span>
+    </a>
 
-    <main>
-        <section id="sobre" class="hero">
-            <h1>Olá, eu sou um Desenvolvedor apaixonado por Animes!</h1>
-            <p>Este é o meu portfólio. Aqui eu misturo minhas habilidades em HTML, CSS e JavaScript com as minhas histórias favoritas.</p>
-            <div class="skills">
-                <span class="badge">HTML5</span>
-                <span class="badge">CSS3</span>
-                <span class="badge">JavaScript</span>
-            </div>
-        </section>
+    <nav aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#tecnologias">Tecnologias</a>
+    </nav>
+  </header>
 
-        <section id="classicos">
-            <h2>Clássicos que Marcaram o Brasil 🇧🇷</h2>
-            <div class="grid-cards">
-                <div class="card" onclick="mostrarInfo('Cavaleiros do Zodíaco')">
-                    <h3>Os Cavaleiros do Zodíaco</h3>
-                    <p>Elevou o cosmo de toda uma geração na extinta Rede Manchete nos anos 90.</p>
-                </div>
-                <div class="card" onclick="mostrarInfo('Dragon Ball Z')">
-                    <h3>Dragon Ball Z</h3>
-                    <p>As aventuras de Goku e os guerreiros Z paravam o Brasil nas manhãs de TV aberta.</p>
-                </div>
-                <div class="card" onclick="mostrarInfo('Yu Yu Hakusho')">
-                    <h3>Yu Yu Hakusho</h3>
-                    <p>Inesquecível não só pela história de Yusuke Urameshi, mas pela dublagem brasileira lendária.</p>
-                </div>
-            </div>
-        </section>
+  <main>
+    <section id="inicio" class="hero" aria-labelledby="titulo-principal">
+      <div class="hero-conteudo">
+        <p class="rotulo">Projeto de portfólio front-end</p>
+        <h1 id="titulo-principal">Histórias que atravessam gerações</h1>
+        <p class="hero-texto">
+          Um catálogo interativo que reúne animes clássicos populares no Brasil e
+          produções confirmadas para 2026.
+        </p>
 
-        <section id="destaques-2026">
-            <h2>Os Melhores Animes de 2026 🔥</h2>
-            <div id="grid-2026" class="grid-cards"></div>
-        </section>
-    </main>
+        <div class="acoes">
+          <a class="botao botao-primario" href="#catalogo">Explorar catálogo</a>
+          <a class="botao botao-secundario" href="#sobre">Conhecer o projeto</a>
+        </div>
+      </div>
 
-    <footer>
-        <p>&copy; 2026 - Desenvolvido com muito café e episódios de anime.</p>
-    </footer>
+      <div class="hero-arte" aria-hidden="true">
+        <span class="orbita orbita-um"></span>
+        <span class="orbita orbita-dois"></span>
+        <span class="simbolo">ア</span>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="sobre" class="secao sobre" aria-labelledby="titulo-sobre">
+      <div>
+        <p class="rotulo">Sobre o projeto</p>
+        <h2 id="titulo-sobre">Conteúdo, interação e desenvolvimento web</h2>
+      </div>
+
+      <p>
+        O AnimeVerse demonstra estruturação semântica, layout responsivo,
+        renderização dinâmica, filtros, busca e manipulação segura do DOM com
+        JavaScript puro. A seleção de 2026 não representa um ranking: são títulos
+        confirmados em programações e anúncios oficiais.
+      </p>
+    </section>
+
+    <section id="catalogo" class="secao" aria-labelledby="titulo-catalogo">
+      <div class="cabecalho-secao">
+        <div>
+          <p class="rotulo">Catálogo interativo</p>
+          <h2 id="titulo-catalogo">Encontre seu próximo anime</h2>
+        </div>
+        <p>
+          Pesquise por título ou filtre entre clássicos e destaques de 2026.
+        </p>
+      </div>
+
+      <div class="controles">
+        <label class="campo-busca">
+          <span class="sr-only">Pesquisar anime</span>
+          <input
+            id="busca"
+            type="search"
+            placeholder="Pesquisar por título..."
+            autocomplete="off"
+          >
+        </label>
+
+        <div class="filtros" role="group" aria-label="Filtrar catálogo">
+          <button class="filtro ativo" type="button" data-filtro="todos" aria-pressed="true">
+            Todos
+          </button>
+          <button class="filtro" type="button" data-filtro="classico" aria-pressed="false">
+            Clássicos no Brasil
+          </button>
+          <button class="filtro" type="button" data-filtro="2026" aria-pressed="false">
+            Destaques 2026
+          </button>
+        </div>
+      </div>
+
+      <p id="resultado-status" class="resultado-status" aria-live="polite"></p>
+      <div id="grade-animes" class="grade-animes"></div>
+    </section>
+
+    <section id="tecnologias" class="secao tecnologias" aria-labelledby="titulo-tecnologias">
+      <div>
+        <p class="rotulo">Construção</p>
+        <h2 id="titulo-tecnologias">Tecnologias utilizadas</h2>
+      </div>
+
+      <ul>
+        <li><strong>HTML5</strong><span>Estrutura semântica e acessível</span></li>
+        <li><strong>CSS3</strong><span>Grid, responsividade e animações</span></li>
+        <li><strong>JavaScript</strong><span>Busca, filtros, modal e DOM</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <dialog id="modal-anime" aria-labelledby="modal-titulo">
+    <form method="dialog">
+      <button class="fechar" type="submit" aria-label="Fechar detalhes">×</button>
+    </form>
+    <p id="modal-categoria" class="rotulo"></p>
+    <h2 id="modal-titulo"></h2>
+    <p id="modal-descricao"></p>
+  </dialog>
+
+  <footer>
+    <p>
+      AnimeVerse · Projeto educacional e não oficial ·
+      <span id="ano-atual">2026</span>
+    </p>
+  </footer>
 </body>
 </html>
